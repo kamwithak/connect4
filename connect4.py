@@ -10,7 +10,7 @@ class Connect4():
         self.m = m
         self.board = self.create_board()
         self.default_player = default_player
-
+        
     def print_board(self):
         print(self.board)
 
@@ -58,10 +58,16 @@ class Connect4():
                     return True
         return False
     
+    def update_board(self):
+        n = input("Please select a column between 1 and 7")
+        if (not (n.isnumeric() and 1 <= int(n) <= 7)):
+            self.update_board()
+
     def game_engine(self):
-        pass
+        print(f"Starting player: {self.default_player}")
+        self.update_board()
+
 
 if __name__ == '__main__':
-  obj = Connect4()
-  print(obj.create_board())
-  print(obj.verify_winner(Player.RED_PLAYER))
+    obj = Connect4()
+    obj.game_engine()
