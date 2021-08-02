@@ -61,8 +61,6 @@ class Connect4():
     def game_engine(self):
         pass
 
-
-
 if __name__ == '__main__':
   obj = Connect4()
   print(obj.create_board())
