@@ -25,7 +25,7 @@ class Connect4():
             i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)
         }
 
-    def verify_winner(self):    
+    def verify_winner(self):                                            # TODO: think about and code up from scratch
         # iterate over all rows
         for row_index in range(self.n):
             for col_index in range(self.m-4):
@@ -88,14 +88,14 @@ class Connect4():
     def game_random_agent(self):
         print('Welcome to Connect4 - Practice Problem Edition!')
         while (not self.game_exit):
+            if (self.current_player.value == Player.RANDOM_PLAYER.value):
+                column_entry = random.randint(0, self.m)
+            else:
+                column_entry = random.randint(0, self.m)
             print(f"Current player: {self.current_player}")
             print('~'*30)
             self.print_board()
             print('~'*30)
-            if (self.current_player.value == Player.RANDOM_PLAYER.value):
-                column_entry = random.randint(0, self.m)
-            else:
-                column_entry = self.request_move()
             self.update_board(column_entry)
             if (self.verify_winner()):
                 print('~'*30)
