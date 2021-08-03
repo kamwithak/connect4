@@ -1,3 +1,4 @@
+import sys
 from enum import Enum
 
 class Empty(Enum):
@@ -16,11 +17,13 @@ class Connect4():
         self.game_exit = False
         
     def print_board(self):
-        for row_index in self.board:
-            print(row_index, self.board[row_index])
+        for index, row in enumerate(self.board, start=1):
+            print(index, self.board[row])
 
     def create_board(self):
-        return {i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)}
+        return {
+            i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)
+        }
 
     def verify_winner(self):    
         # iterate over all rows
@@ -47,7 +50,8 @@ class Connect4():
                 if (self.board[row_index][col_index].value == self.current_player.value and \
                     self.board[row_index+1][col_index+1].value == self.current_player.value and \
                     self.board[row_index+2][col_index+2].value == self.current_player.value and \
-                    self.board[row_index+3][col_index+3].value == self.current_player.value):
+                    self.board[row_index+3][col_index+3].value == self.current_player.value
+                    ):
                     return True
         # iterate over upwards diagonals (L -> R)
         for row_index in range(self.n-3):
@@ -55,7 +59,8 @@ class Connect4():
                 if (self.board[row_index][col_index].value == self.current_player.value and \
                     self.board[row_index+1][col_index-1].value == self.current_player.value and \
                     self.board[row_index+2][col_index-2].value == self.current_player.value and \
-                    self.board[row_index+3][col_index-3].value == self.current_player.value):
+                    self.board[row_index+3][col_index-3].value == self.current_player.value
+                    ):
                     return True
         return False
     
@@ -98,3 +103,4 @@ class Connect4():
 if __name__ == '__main__':
     obj = Connect4()
     obj.game_engine()
+    sys.exit()
