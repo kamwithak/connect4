@@ -1,10 +1,10 @@
 import sys
-from enum import Enum
+import enum
 
-class Empty(Enum):
+class Empty(enum.Enum):
     EMPTY_SPACE = 'EMPTY'
 
-class Player(Enum):
+class Player(enum.Enum):
     RED_PLAYER = 'RED'
     YELLOW_PLAYER = 'YELLOW'
 
