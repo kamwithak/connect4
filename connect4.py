@@ -65,9 +65,9 @@ class Connect4():
         return False
     
     def request_move(self):
-        column_entry = input("Please select a column between 1 and 7")
-        if (not (column_entry.isnumeric() and 1 <= int(column_entry) <= 7)):
-            self.request_move()
+        column_entry = ''
+        while (not column_entry.isnumeric() or not (1 <= int(column_entry) <= 7)):
+            column_entry = input("Please select a column between 1 and 7")
         return int(column_entry)
     
     def update_board(self, column_entry):
