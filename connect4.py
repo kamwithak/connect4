@@ -16,9 +16,8 @@ class Connect4():
         self.game_exit = False
         
     def print_board(self):
-        # print(self.board)
-        for k in self.board:
-            print(k, self.board[k])
+        for row_index in self.board:
+            print(row_index, self.board[row_index])
 
     def create_board(self):
         return {i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)}
@@ -99,4 +98,3 @@ class Connect4():
 if __name__ == '__main__':
     obj = Connect4()
     obj.game_engine()
-    # print(obj.verify_winner(Player.RED_PLAYER))
