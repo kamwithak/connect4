@@ -70,7 +70,7 @@ class Connect4():
             column_entry = input("Please select a column between 1 and 7: ")
         return int(column_entry)
     
-    def update_board(self, column_entry):
+    def update_board(self, column_entry):                                           # TODO: deal with edge case of column full
         row_of_interest = 0
         for row in self.board:
             possible_placement = self.board[row][column_entry-1]
@@ -88,14 +88,14 @@ class Connect4():
     def game_random_agent(self):
         print('Welcome to Connect4 - Practice Problem Edition!')
         while (not self.game_exit):
-            if (self.current_player.value == Player.RANDOM_PLAYER.value):
-                column_entry = random.randint(0, self.m)
-            else:
-                column_entry = random.randint(0, self.m)
             print(f"Current player: {self.current_player}")
             print('~'*30)
             self.print_board()
             print('~'*30)
+            if (self.current_player.value == Player.RANDOM_PLAYER.value):
+                column_entry = random.randint(0, self.m)
+            else:
+                column_entry = self.request_move()
             self.update_board(column_entry)
             if (self.verify_winner()):
                 print('~'*30)
