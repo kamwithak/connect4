@@ -21,9 +21,7 @@ class Connect4():
             print(k, self.board[k])
 
     def create_board(self):
-        board = {i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)}
-        # board[5] = [Player.RED_PLAYER, Player.RED_PLAYER, Player.RED_PLAYER, Player.RED_PLAYER, Empty.EMPTY_SPACE, Empty.EMPTY_SPACE, Empty.EMPTY_SPACE]
-        return board
+        return {i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)}
 
     def verify_winner(self):    
         # iterate over all rows
@@ -72,15 +70,10 @@ class Connect4():
         row_of_interest = 0
         for row in self.board:
             possible_placement = self.board[row][column_entry-1]
-            if (possible_placement.value == Empty.EMPTY_SPACE.value):
-                row_of_interest += 1
-                continue
-            else:
+            if (possible_placement.value != Empty.EMPTY_SPACE.value):
                 break
-        
-        print(f"modifying {row_of_interest-1, column_entry-1}")
+            row_of_interest += 1
         self.board[row_of_interest-1][column_entry-1] = self.current_player
-        print('done')
 
     def switch_players(self):
         if (self.current_player.value == Player.RED_PLAYER.value):
