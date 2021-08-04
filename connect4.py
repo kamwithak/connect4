@@ -25,7 +25,7 @@ class Connect4():
             i : [Empty.EMPTY_SPACE for _ in range(self.m)] for i in range(self.n)
         }
 
-    def verify_winner(self):                                            # TODO: think about and code up from scratch
+    def verify_winner(self):
         # iterate over all rows
         for row_index in range(self.n):
             for col_index in range(self.m-3):
@@ -45,23 +45,23 @@ class Connect4():
                     ):
                     return True
         # # iterate over downwards diagonals (L -> R)
-        # for row_index in range(self.n-3):
-        #     for col_index in range(self.m-3):
-        #         if (self.board[row_index][col_index].value == self.current_player.value and \
-        #             self.board[row_index+1][col_index+1].value == self.current_player.value and \
-        #             self.board[row_index+2][col_index+2].value == self.current_player.value and \
-        #             self.board[row_index+3][col_index+3].value == self.current_player.value
-        #             ):
-        #             return True
+        for row_index in range(self.n-3):
+            for col_index in range(self.m-3):
+                if (self.board[row_index][col_index].value == self.current_player.value and \
+                    self.board[row_index+1][col_index+1].value == self.current_player.value and \
+                    self.board[row_index+2][col_index+2].value == self.current_player.value and \
+                    self.board[row_index+3][col_index+3].value == self.current_player.value
+                    ):
+                    return True
         # # iterate over upwards diagonals (L -> R)
-        # for row_index in range(self.n-3):
-        #     for col_index in range(3, self.m):
-        #         if (self.board[row_index][col_index].value == self.current_player.value and \
-        #             self.board[row_index+1][col_index-1].value == self.current_player.value and \
-        #             self.board[row_index+2][col_index-2].value == self.current_player.value and \
-        #             self.board[row_index+3][col_index-3].value == self.current_player.value
-        #             ):
-        #             return True
+        for row_index in range(self.n-3):
+            for col_index in range(3, self.m):
+                if (self.board[row_index][col_index].value == self.current_player.value and \
+                    self.board[row_index+1][col_index-1].value == self.current_player.value and \
+                    self.board[row_index+2][col_index-2].value == self.current_player.value and \
+                    self.board[row_index+3][col_index-3].value == self.current_player.value
+                    ):
+                    return True
         return False
     
     def request_move(self):
