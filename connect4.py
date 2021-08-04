@@ -70,14 +70,17 @@ class Connect4():
             column_entry = input("Please select a column between 1 and 7: ")
         return int(column_entry)
     
-    def update_board(self, column_entry):                                           # TODO: deal with edge case of column full
+    def update_board(self, column_entry):
         row_of_interest = 0
         for row in self.board:
             possible_placement = self.board[row][column_entry-1]
             if (possible_placement.value != Empty.EMPTY_SPACE.value):
                 break
             row_of_interest += 1
+        if (row_of_interest == 0):
+            return False
         self.board[row_of_interest-1][column_entry-1] = self.current_player
+        return True
 
     def switch_players(self):
         if (self.current_player.value == Player.RANDOM_PLAYER.value):
@@ -96,7 +99,9 @@ class Connect4():
                 column_entry = random.randint(0, self.m)
             else:
                 column_entry = self.request_move()
-            self.update_board(column_entry)
+            successfully_updated = self.update_board(column_entry)
+            if (not successfully_updated):
+                continue
             if (self.verify_winner()):
                 print('~'*30)
                 self.print_board()
